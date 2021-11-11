@@ -84,6 +84,7 @@ public class Conversion_Fragment extends Fragment {
         }else
         {
             from_numDoub = Double.parseDouble(from_numString);
+
         }
     }
 
