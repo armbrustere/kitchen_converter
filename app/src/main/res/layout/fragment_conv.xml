@@ -50,6 +50,7 @@
             android:textSize="20sp"
             android:translationX="100dp"
             android:translationY="300dp"
+            android:inputType= "number"
             tools:ignore="LabelFor" />
 
         <TextView
