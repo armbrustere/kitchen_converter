@@ -1,8 +1,6 @@
 package com.ethan.measurement_converter;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,15 +14,15 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 public class Conversion_Fragment extends Fragment {
-    private EditText convert_from_text;
-    private Spinner unit_from;
-    private TextView result;
-    private Spinner unit_to;
-    private Conversion_Unit cu;
+    private EditText amount_from;
+    private TextView amount_to;
+    private Spinner unit_from, unit_to;
+    private final Conversion_Units cu;
+
 
 
     public Conversion_Fragment() {
-        cu = new Conversion_Unit();
+        cu = new Conversion_Units();
     }
 
 
@@ -39,8 +37,8 @@ public class Conversion_Fragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_conv, container, false);
 
         //Add references to elements
-        convert_from_text = v.findViewById(R.id.convert_from);
-        result = v.findViewById(R.id.result);
+        amount_from = v.findViewById(R.id.unit1);
+        amount_to = v.findViewById(R.id.unit2);
         unit_from = v.findViewById(R.id.unit_from);
         unit_to = v.findViewById(R.id.unit_to);
 
@@ -52,7 +50,7 @@ public class Conversion_Fragment extends Fragment {
         unit_to.setAdapter(adapter);
 
         //Add listeners to elements
-        convert_from_text.setOnEditorActionListener(this::onEditorAction);
+        amount_from.setOnEditorActionListener(this::onEditorAction);
 
 
         return v;
@@ -60,7 +58,6 @@ public class Conversion_Fragment extends Fragment {
 
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         int keyCode = -1;
-        double kgtoLB = cu.getKg_perLb();
         if (event != null) {
             keyCode = event.getKeyCode();
         }
@@ -75,27 +72,35 @@ public class Conversion_Fragment extends Fragment {
         return false;
     }
 
+
     private void convert() {
-        String from_numString = convert_from_text.getText().toString();
-        double from_numDoub;
-        double doubResult;
-        double kgtoLB;
+        String amount_fromString = amount_from.getText().toString();
+        double amount_from;
+
+        double result;
+        double kgtoLB = cu.getKg_perLb();
         String test;
+        
 
-        if (from_numString.equals("")) {
-            from_numDoub = 0;
+        if (amount_fromString.equals("")) {
+            amount_from = 0;
         } else {
-            from_numDoub = Double.parseDouble(from_numString);
+            amount_from = Double.parseDouble(amount_fromString);
         }
-
+        
+        //Amount<? extends Quantity> from =Amount.valueOf(from_numDoub, kgtoLB);
+       // Amount<? extends Quantity> to;
 
         //Convert units
-        if (unit_from.getSelectedItem().toString().equals("lb") && unit_to.getSelectedItem().toString().equals("kg")) {
-            kgtoLB = cu.getKg_perLb();
-            doubResult = (from_numDoub * kgtoLB);
-            test = String.format(String.valueOf(doubResult), "%.2f");
-            result.setText(test);
-           // result.setText(doubResult.f);
+        if (unit_from.getSelectedItem().toString().equals("kg")  && unit_to.getSelectedItem().toString().equals("lb") ) {
+            //kgtoLB = Conversion_Units.UNITS.get(0);
+            //to = kgtoLB.times(from_numDoub);
+
+            result = (amount_from * kgtoLB);
+            test = String.format(String.valueOf(result), "%.2f");
+            amount_to.setText(test);
+            System.out.println(test);
+
 
         }
     }
