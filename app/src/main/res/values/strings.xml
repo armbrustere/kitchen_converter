@@ -1,10 +1,5 @@
 <resources>
     <string name="app_name">Measurement Converter</string>
 
-    <string-array name="units_of_measurement">
-        <item>lb</item>
-        <item>kg</item>
-        <item>tbsp</item>
-        <item>cup</item>
-    </string-array>
+
 </resources>

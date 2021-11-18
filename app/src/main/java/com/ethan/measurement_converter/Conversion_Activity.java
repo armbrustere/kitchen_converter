@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
+import com.ethan.measurement_converter.Fragments.Conversion_Fragment;
+
 public class Conversion_Activity extends AppCompatActivity {
 
     @Override
