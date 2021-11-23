@@ -13,11 +13,13 @@ import javax.measure.unit.Unit;
 
 public class Conversion_Units {
     public static final Unit<Volume> TABLESPOON_US = NonSI.OUNCE_LIQUID_US.divide(2);
+    public static final Unit<Volume> TEASPOON_US = TABLESPOON_US.divide(3);
     public static final Unit<Volume> CUP_US = NonSI.OUNCE_LIQUID_US.times(8);
 
 
     public static final List<Unit<? extends Quantity>> UNITS = List.of(
             TABLESPOON_US,
+            TEASPOON_US,
             CUP_US,
             SI.KILOGRAM,
             SI.GRAM,
@@ -37,10 +39,9 @@ public class Conversion_Units {
 
     public static final Map<Unit<? extends Quantity>, String> UNIT_TO_STRING = Map.ofEntries(
             entry(TABLESPOON_US, "tbsp(US)"),
-            entry(CUP_US, "cup (US)"),
-            entry(NonSI.OUNCE_LIQUID_US, "fl oz"),
-            entry(SI.KILOGRAM, "kg")
-    );
+            entry(TEASPOON_US, "tsp(US)"),
+            entry(CUP_US, "cup (US)")
+            );
 
 
     public static String unitToString(Unit<? extends Quantity> unit) {

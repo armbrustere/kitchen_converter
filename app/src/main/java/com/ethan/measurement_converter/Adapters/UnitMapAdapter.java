@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.ethan.measurement_converter.Conversion_Units;
+import com.ethan.measurement_converter.R;
 
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class UnitMapAdapter extends BaseAdapter {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return constructView(position, convertView, parent, android.R.layout.simple_spinner_item);
+        return constructView(position, convertView, parent, R.layout.simple_spinner_item);
     }
 
     @Override
